@@ -5,6 +5,7 @@ const CounterMachine =
   createMachine({
     context: {
       count: 0,
+      employee: [],
     },
     on: {
       INCREMENT: {
@@ -15,6 +16,12 @@ const CounterMachine =
       DECREMENT: {
         actions: assign({
           count: (context) => context.count - 1,
+        }),
+      },
+
+      ADD_EMPLOYEE: {
+        actions: assign({
+          employee: (context, event) => [...context.employee, event.employee],
         }),
       },
     },
