@@ -1,6 +1,11 @@
 import { useMachine } from "@xstate/react";
 import React, { useState } from "react";
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import Todo from "./components/Todo";
+
 import CounterMachine from "./machines/CounterMachine";
 
 const App = () => {
@@ -21,7 +26,19 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1 className="">{state.context.count}</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+          <Route path="/todo" element={<Todo />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+};
+
+/*
+<h1 className="">{state.context.count}</h1>
       <button onClick={() => send("INCREMENT")}>INCREMENT</button>
       <button onClick={() => send("DECREMENT")}>INCREMENT</button>
       <div className="flex flex-col w-[50%] justify-center items-center">
@@ -42,8 +59,5 @@ const App = () => {
         <button onClick={handleClick} className="p-3 bg-blue-500 w-[150px]">
           Add Employee
         </button>
-      </div>
-    </div>
-  );
-};
+      </div>*/
 export default App;
