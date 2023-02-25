@@ -2,20 +2,23 @@ import { useMachine } from "@xstate/react";
 import React, { useState } from "react";
 import EmployeeMachine from "../machines/EmployeeMachine";
 
+import todoMachine from "../machines/todoMachine";
 const Todo = () => {
- const [state, send] = useMachine(EmployeeMachine)
-  const [todo, setTodo] = useState({});
+  const [state, send] = useMachine(todoMachine);
+  const [todo, setTodo] = useState();
 
   const handleTodo = (e) => {
     console.log(e.target.value);
+    setTodo(e.target.value);
+    send("ADD");
   };
 
   const handleAddTodo = () => {
-    console.log(todo);
-    send("ADD_EMPLOYEE", {
-        todo: todo,
-      });
-  
+    send("SAVE", {
+      todos: todo,
+    });
+
+    console.log(state.context.todos);
   };
 
   return (
@@ -60,22 +63,24 @@ const Todo = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                      <th
-                        scope="row"
-                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                      >
-                        Wash dishes
-                      </th>
-                      <td class="px-6 py-4">
-                        <button
-                          type="button"
-                          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                    {state.context.todos.map((todo) => (
+                      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <th
+                          scope="row"
+                          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                         >
-                          Edit
-                        </button>
-                      </td>
-                    </tr>
+                          {todo}
+                        </th>
+                        <td class="px-6 py-4">
+                          <button
+                            type="button"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                          >
+                            Edit
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>

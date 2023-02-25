@@ -8,6 +8,16 @@ import Todo from "./components/Todo";
 
 import CounterMachine from "./machines/CounterMachine";
 
+import TodoList from "./machines/todoMachine";
+
+// function App() {
+//   return (
+//     <div>
+//       <TodoList />
+//     </div>
+//   );
+// }
+
 const App = () => {
   const [state, send] = useMachine(CounterMachine);
   const [employee, setEmployee] = useState("");
