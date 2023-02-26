@@ -1,0 +1,60 @@
+.deleteButton {
+  border-radius: $button-radius;
+  color: #ffffff;
+  background: #d93434;
+  margin-left: 10px;
+  padding: 5px 20px 5px 20px;
+  text-decoration: none;
+}
+
+.deleteButton:hover {
+  background: #ff6666;
+  background-image: -webkit-linear-gradient(top, #ff6666, #f76060);
+  background-image: -moz-linear-gradient(top, #ff6666, #f76060);
+  background-image: -ms-linear-gradient(top, #ff6666, #f76060);
+  background-image: -o-linear-gradient(top, #ff6666, #f76060);
+  background-image: linear-gradient(to bottom, #ff6666, #f76060);
+  text-decoration: none;
+}
+
+.updateButton {
+  border-radius: $button-radius;
+  color: #ffffff;
+  background: #3653f7;
+  padding: 5px 20px 5px 20px;
+  text-decoration: none;
+}
+
+.updateButton:hover {
+  background: #4329e6;
+  background-image: -webkit-linear-gradient(top, #4329e6, #7999f2);
+  background-image: -moz-linear-gradient(top, #4329e6, #7999f2);
+  background-image: -ms-linear-gradient(top, #4329e6, #7999f2);
+  background-image: -o-linear-gradient(top, #4329e6, #7999f2);
+  background-image: linear-gradient(to bottom, #4329e6, #7999f2);
+  text-decoration: none;
+}
+
+table.table {
+  table-layout: fixed;
+  width: 100%;  
+  text-align: left;
+  color: black;
+}
+
+table td, table th {
+  padding: 8px;
+}
+table td{
+  border: 0.2px solid black;
+  background-color: transparent;
+
+}
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #384152;
+  color: white;
+}
+

@@ -3,7 +3,7 @@ import { useMachine } from "@xstate/react";
 import { actions, assign, createMachine, Machine } from "xstate";
 
 const todoModel =
-  /** @xstate-layout N4IgpgJg5mDOIC5QBcD2FUDoCWEA2YAxAIIAipA2gAwC6ioADqrNstqgHb0gAeiAtAA4ALJgBMARgDMYgJwB2KmIBsyiQFYxwgDQgAnogmCqmeeuWKxU2WPny5AXwe60GTAEMIEbByiEAysQAagCi1HRIIEwsbJzcfAjS6pjCghL2IoKC6oJSEroGifaYFupU0nYy5hpOLuhYsO4Abj5+gaEA+iEAsgAKADIA8gCaIWG03NGs7FyRCVZimOaq2VnCVFJpYgWI8rKYElS5yrLCttlG6rUgrg3NrYSkIf0hACrjEYzM03FziMISZSYQRqZTZWSyNJSeT5fSGeRSJZHKTKdQSQ4wqhUZTXW6YRotXyEACqvVIxHe4Um31is1ACQBQJBgPBkIqsMKVlEwlkZQ0ZzEtiodlx9UwEDABDYRKeL3eXT6Q1GH2pMRm8UQykkKVkqj2eS16jMOwQe0wp3SSnkakuklFbgArgwIO5pX5SeT5T0BiMxlTIlNaRqEIzgaDWVCYSaxCJzeo+fZhFJ4-InM4QBx0HBuLdVT86bwBGI0ZhrDJIVINqioSahKWYcoDYdZICpDJ7VhcAQ80G-gh+GINqXZOXclWctITUYJOIAYoqMJ1DZBHsOx4vK0e+q++jS+UYYJB6c9iOp2lZyytPHAQi1wTNwGadv6YgVMkJFpAbYFAD1Do4YkxgpMiNpXmkGxrhKUoPl8aq-C+CCqIsdiqNYf5YtiZ4zp+JzCIuewSHha5Oi6bpbvBhaIVqpjWo2vLrFiyjRtYpgGoehGDlcaZAA */
+  /** @xstate-layout N4IgpgJg5mDOIC5QBcD2FUDoCWEA2YAxAIIAipA2gAwC6ioADqrNstqgHb0gAeiAjACYArJgDsADjHCqAZkH8qEwbIkAWADQgAnollzMEqoICcVNfzVTTEgL62taDJgCGECNg5RCAZWIA1AFFqOiQQJhY2Tm4+BHlRUwA2KQtjRLVjWS1dOIMjU3NLaxM7BxAnLFgXADdPbz8ggH0AOQB5ABVg2m4I1nYuMNi1QUFMDMTBMSpE80E1NVlE7MQFKkwR2WlJtUT+MTUTMXtHdEqausJSQIAZQM6QnuY+6MHEYSlDfmF05WFvsX4JmWcTmmGEJghEi+xkmi2O5VOmCqtS8hAAqgAFUjEe7dMK9KIDUCxd5iT7fKwif6A4F7MlGCayfj6TYqJTwiqYCBgAhsVFXW6dFodLqhRhPQkxN5mcRyPaCCQSQ5iAHAkYSdZQlRSdLpYRiRIcxEAVwYEBcfO8mOxQrauLF4Ql-SlCFJ5J+VMSAKBOkQULGKUV3xmJmEk3sZQ46Dg3Aqj0izteCAAtEtfSnEpgqNmc7mc5Yjc5cAR488ibxEMNgfo1OsTLJhLITArdkpDWVOW4PF5S5KkyN+JhZAt9vrDjtjNXzHWG02W4oJO2Ts5kXVe4niZX5kOqF9F98c2IfTkmYPhMMDueJKpjKVl1huby1-inS9NwhpBq-iYMiZEiV9H4fhq0BMElCSaYm0kJcEWcU1zUtdc3wrD93jBcFf3-a9d2A9N5XESxz3eRJzwVfgI1sIA */
   createMachine({
     id: "todo",
     initial: "idle",
@@ -24,7 +24,7 @@ const todoModel =
 
       saving: {
         on: {
-          SAVE_EMPLOYEE: {
+          SAVE_NOTE: {
             actions: assign({
               todos: (context, event) => [...context.todos, event.todos],
             }),
@@ -36,7 +36,7 @@ const todoModel =
 
       deleting: {
         on: {
-          DELETE_EMPLOYEE: {
+          DELETE_NOTE: {
             target: "saving",
             actions: assign({
               todos: (context, event) => event.todos,
@@ -47,7 +47,7 @@ const todoModel =
 
       updating: {
         on: {
-          UPDATE_EMPLOYEE: {
+          UPDATE_NOTE: {
             target: "saving",
             actions: assign({
               todos: (context, event) => event.todos,

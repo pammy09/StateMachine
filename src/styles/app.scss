@@ -1,0 +1,48 @@
+//Background
+$myBackground-color: hsla(0, 100%, 50%, 1);
+$myBackground-image: radial-gradient(
+    at 40% 20%,
+    hsla(28, 100%, 74%, 1) 0px,
+    transparent 50%
+  ),
+  radial-gradient(at 80% 0%, hsla(189, 100%, 56%, 1) 0px, transparent 50%),
+  radial-gradient(at 0% 50%, hsla(355, 100%, 93%, 1) 0px, transparent 50%),
+  radial-gradient(at 88% 51%, hsla(340, 100%, 76%, 1) 0px, transparent 50%),
+  radial-gradient(at 0% 100%, hsla(22, 100%, 77%, 1) 0px, transparent 50%),
+  radial-gradient(at 80% 100%, hsla(242, 100%, 70%, 1) 0px, transparent 50%),
+  radial-gradient(at 0% 0%, hsla(343, 100%, 76%, 1) 0px, transparent 50%);
+
+//Font
+$myFont: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+
+//Buttons
+$button-radius: 28px;
+
+
+//Global Start
+html,
+body {
+  background-color: $myBackground-color;
+  background-image: $myBackground-image;
+  background-repeat: no-repeat;
+  background-size: auto;
+
+  margin: 0;
+  padding: 25px;
+}
+
+/*Override*/
+* {
+  font-family: $myFont;
+}
+//Global End
+
+.App {
+
+  height: 100vh;
+
+  @import "./style.scss";
+}
+
+
+
