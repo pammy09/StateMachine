@@ -1,10 +1,8 @@
 import { useMachine } from "@xstate/react";
 import React, { useState } from "react";
-import EmployeeMachine from "../machines/EmployeeMachine";
-
-import todoMachine from "../machines/todoMachine";
+import todoModel from "../model/todoModel";
 const Todo = () => {
-  const [state, send] = useMachine(todoMachine);
+  const [state, send] = useMachine(todoModel);
   const [todo, setTodo] = useState();
   const [isUpdate, setUpdate] = useState();
   const [toUpdate, setToUpdate] = useState();
@@ -15,22 +13,26 @@ const Todo = () => {
   };
 
   const handleAddTodo = () => {
-    send("SAVE", {
+    send("SAVE");
+    send("SAVE_EMPLOYEE", {
       todos: todo,
     });
+
     setTodo("");
   };
 
   const handleDelete = (value) => {
+    send("DELETE");
     const newValues = state.context.todos.filter((data) => {
       return value != data;
     });
-    send("REMOVE", {
+    send("DELETE_EMPLOYEE", {
       todos: newValues,
     });
   };
 
   const handleUpdate = (value) => {
+    send("UPDATE");
     setTodo(value);
     setToUpdate(value);
     setUpdate(true);
@@ -45,7 +47,7 @@ const Todo = () => {
       }
     });
 
-    send("UPDATE", {
+    send("UPDATE_EMPLOYEE", {
       todos: newData,
     });
 
