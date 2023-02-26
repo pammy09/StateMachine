@@ -6,6 +6,7 @@ const Todo = () => {
   const [todo, setTodo] = useState();
   const [isUpdate, setUpdate] = useState();
   const [toUpdate, setToUpdate] = useState();
+  const [updateIndex, setUpdateIndex] = useState();
 
   const handleTodo = (e) => {
     setTodo(e.target.value);
@@ -21,26 +22,29 @@ const Todo = () => {
     setTodo("");
   };
 
-  const handleDelete = (value) => {
+  const handleDelete = (value, index) => {
     send("DELETE");
-    const newValues = state.context.todos.filter((data) => {
-      return value != data;
-    });
+
+    const newValues = state.context.todos;
+
+    newValues.splice(index, 1);
+
     send("DELETE_EMPLOYEE", {
       todos: newValues,
     });
   };
 
-  const handleUpdate = (value) => {
+  const handleUpdate = (value, index) => {
     send("UPDATE");
     setTodo(value);
+    setUpdateIndex(index);
     setToUpdate(value);
     setUpdate(true);
   };
 
   const handleSubmitEdit = () => {
-    const newData = state.context.todos.map((item) => {
-      if (item == toUpdate) {
+    const newData = state.context.todos.map((item, index) => {
+      if (item == toUpdate && index == updateIndex) {
         return todo;
       } else {
         return item;
@@ -108,7 +112,7 @@ const Todo = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {state.context.todos.map((to) => (
+                    {state.context.todos.map((to, index) => (
                       <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th
                           scope="row"
@@ -119,14 +123,14 @@ const Todo = () => {
                         <td class="px-6 py-4">
                           <button
                             type="button"
-                            onClick={() => handleDelete(to)}
+                            onClick={() => handleDelete(to, index)}
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                           >
                             DELETE
                           </button>
                           <button
                             type="button"
-                            onClick={() => handleUpdate(to)}
+                            onClick={() => handleUpdate(to, index)}
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                           >
                             UPDATE

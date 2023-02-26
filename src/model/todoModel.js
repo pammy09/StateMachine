@@ -35,9 +35,9 @@ const todoModel =
       },
 
       deleting: {
-        type: "final",
         on: {
           DELETE_EMPLOYEE: {
+            target: "saving",
             actions: assign({
               todos: (context, event) => event.todos,
             }),
@@ -48,7 +48,7 @@ const todoModel =
       updating: {
         on: {
           UPDATE_EMPLOYEE: {
-            target: "idle",
+            target: "saving",
             actions: assign({
               todos: (context, event) => event.todos,
             }),
