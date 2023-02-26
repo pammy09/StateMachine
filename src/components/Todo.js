@@ -8,7 +8,6 @@ const Todo = () => {
   const [todo, setTodo] = useState();
 
   const handleTodo = (e) => {
-    console.log(e.target.value);
     setTodo(e.target.value);
     send("ADD");
   };
@@ -18,7 +17,23 @@ const Todo = () => {
       todos: todo,
     });
 
-    console.log(state.context.todos);
+    send("DELETE");
+  };
+
+  const handleDelete = (value) => {
+    // send("REMOVE", {
+    //   todos: todo,
+    // });
+
+    const newValues = state.context.todos.filter((data) => {
+      return value != data;
+    });
+
+    send("REMOVE", {
+      todos: newValues,
+    });
+
+    //console.log(state.context.todos);
   };
 
   return (
@@ -63,20 +78,21 @@ const Todo = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {state.context.todos.map((todo) => (
+                    {state.context.todos.map((to) => (
                       <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th
                           scope="row"
                           class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                         >
-                          {todo}
+                          {to}
                         </th>
                         <td class="px-6 py-4">
                           <button
                             type="button"
+                            onClick={() => handleDelete(to)}
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                           >
-                            Edit
+                            DELETE
                           </button>
                         </td>
                       </tr>

@@ -3,7 +3,7 @@ import { useMachine } from "@xstate/react";
 import { actions, assign, createMachine, Machine } from "xstate";
 
 const todoMachine =
-  /** @xstate-layout N4IgpgJg5mDOIC5QBcD2FUDoCWEA2YAxAIIAipA2gAwC6ioADqrNstqgHb0gAeiAjAGYqmAOwAOUQFYqo-gDZR8-lPkAmADQgAngNEBOTOJXqALP1FVBo02vkBfe1rQZMAQwgRsHKIQDKxABqAKLUdEggTCxsnNx8CGpSppj8+mqpwoLi4oL6UlJaugjGmKaSZfL6+uKmogZSjs7oWB5ePoQAwsQAch3BADJh3FGs7FwR8UIiEtKyCkommjoCaoaCplTK4vpZEmkNjSAc6HDcLqjDzKOxE4gAtPKF91KYVW-vH4KH5zj4YJfRMZxRC2J4ICxqTBqNS5KRyXKmWpUUzfZruTzeKAA67jUDxRIvGRUKgKQRqYnk-SPZbg8SQ8SbNSmPJSfj8Oz6USORxAA */
+  /** @xstate-layout N4IgpgJg5mDOIC5QBcD2FUDoCWEA2YAxAIIAipA2gAwC6ioADqrNstqgHb0gAeiAjAHYAbJn4AOKlKoBmKgFYh8weIA0IAJ6IZMgJyZ54+VX4KATEeEAWK-IC+d9Wgw58RUgFEAMh4AqH6jokECYWNk5uPgQhUQlpWQUlFXUtaMF5TCorYWFBMwl5M2EzWQcndCwIMAI2DihCACUPAFkAeQA1ANpuUNZ2LmCos119QTkpHXlhXR1hFMRxfkwrSQmZKZmZYTKQZywAQwgIbDrCAGViTsCe5j6Iwe0qQTF5YyozeRmRq34reYQzD9MGZBNJJOJBPxDGYdntMIdjqcAMLEABySO812CvXCA1AURiYlWE0S6WSmkQFn0-A+UhEwz0thkDkcIA46Dg3D2NzC-UiiAAtHMKQghbCKq4CDy7njeIgrGZ-jJhmJdOlTJDdMMZuKXFUaicoNLcfyEONMOIrNI9LkLIphakJGZMCppNYqOJpr9dQcjobjXyHmapBarRNdLajPwHdoFQZQSZ+PwZOJdNGWXYgA */
   createMachine({
     id: "todo",
     initial: "idle",
@@ -23,6 +23,13 @@ const todoMachine =
               todos: (context, event) => [...context.todos, event.todos],
             }),
           },
+
+          REMOVE: {
+            actions: assign({
+              todos: (context, event) => event.todos,
+            }),
+          },
+
           CANCEL: "idle",
         },
       },
