@@ -30,6 +30,11 @@ const todoMachine =
             }),
           },
 
+          UPDATE: {
+            actions: assign({
+              todos: (context, event) => event.todos,
+            }),
+          },
           CANCEL: "idle",
         },
       },
